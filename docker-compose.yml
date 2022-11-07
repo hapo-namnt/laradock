@@ -438,8 +438,12 @@ services:
       depends_on:
         - php-fpm
       networks:
-        - frontend
-        - backend
+        frontend:
+         aliases:
+          - kurasushi-hp.local
+        backend:
+         aliases:
+          - canlyhp-api.local
 
 ### OpenResty Server #########################################
     openresty:

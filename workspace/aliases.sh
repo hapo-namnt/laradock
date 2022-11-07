@@ -104,15 +104,15 @@ alias lv="latest-version"
 alias gaa="git add ."
 alias gd="git --no-pager diff"
 alias git-revert="git reset --hard && git clean -df"
-alias gs="git status"
+alias gst="git status"
 alias whoops="git reset --hard && git clean -df"
-alias glog="git log --oneline --decorate --graph"
+alias glo="git log --oneline --decorate --graph"
 alias gloga="git log --oneline --decorate --graph --all"
 alias gsh="git show"
 alias grb="git rebase -i"
 alias gbr="git branch"
 alias gc="git commit"
-alias gck="git checkout"
+alias gco="git checkout"
 
 # Create a new directory and enter it
 function mkd() {

@@ -55,6 +55,11 @@ RUN set -xe; \
       libzip-dev zip unzip && \
       if [ ${LARADOCK_PHP_VERSION} = "7.3" ] || [ ${LARADOCK_PHP_VERSION} = "7.4" ] || [ $(php -r "echo PHP_MAJOR_VERSION;") = "8" ]; then \
         docker-php-ext-configure zip; \
+        docker-php-ext-configure gd \
+            --prefix=/usr \
+            --with-jpeg \
+            --with-freetype; \
+    	docker-php-ext-install gd; \
       else \
         docker-php-ext-configure zip --with-libzip; \
       fi && \
@@ -929,6 +934,17 @@ RUN if [ ${INSTALL_ADDITIONAL_LOCALES} = true ]; then \
     && temp="${temp#\"}" \
     && for i in ${temp}; do sed -i "/$i/s/^#//g" /etc/locale.gen; done \
     && locale-gen \
+;fi
+
+###########################################################################
+# Sockets:
+###########################################################################
+
+ARG INSTALL_SOCKET=true
+
+RUN if [ ${INSTALL_SOCKET} = true ]; then \
+# Install the sockets extension
+docker-php-ext-install sockets \
 ;fi
 
 ###########################################################################
